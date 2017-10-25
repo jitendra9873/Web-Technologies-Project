@@ -54,6 +54,24 @@ def signout(request):
     logout(request)
     return redirect("/")
 
+def profile(request, username):
+    user = Student.objects.filter(username__iexact=username).first()
+    data={
+        "user":user,
+    }
+    return render(request, 'profile.html', data)
+
+def Mycourse(request, username):
+    user = Student.objects.filter(username__iexact=username).first()
+    c=user.course
+    print(c)
+    obj = Course.objects.filter(coursename=c).first()
+    print(obj)
+    data={
+        "user":user,
+        "cour":obj,
+    }
+    return render(request, 'course.html', data)
 
 
 def indexView(request):
@@ -79,11 +97,12 @@ def followingsView(request, username):
 
 
 def attendance(request, username):
-    user = Student_attendance.objects.filter(attendance=13)
+    user = Student.objects.filter(username__iexact=username).first()
+    attend=Student_attendance.objects.filter(student=user).first()
     data = {
-        "user": user,
+        "user":user,
+        "attend": attend,
     }
-    print(user.student)
     return render(request, 'attendance.html', data)
 
 
@@ -152,10 +171,3 @@ def getFollowingData(username):
         })
 
     return f_list
-
-def profile(request):
-	data = {
-	"user": getUserData(username, request.user.username),
-	}
-	return render(request, 'profile.html', data)
-

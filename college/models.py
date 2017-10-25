@@ -6,6 +6,7 @@ import os
 
 class Course(models.Model):
     coursename= models.CharField(max_length=100, blank=True, null=True)
+    description=models.CharField(max_length=500, blank=True, null=True)
     course_ka_photo = models.ImageField(default='media/lol.jpg', blank=True, null=True)
     def __str__(self):
         return self.coursename
