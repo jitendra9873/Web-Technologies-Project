@@ -6,13 +6,13 @@ from django.contrib.auth.models import User
 from .models import Student,Follow,Course,Subject,Student_attendance
 
 def base(request):
-	return render(request,'base.html')
+	return render(request,'frontend.html')
 
 def indexRedirect(request):
     if request.user.is_authenticated():
         return dashboardRedirect(request)
     else:
-        return render(request, 'index.html')
+        return render(request, 'frontend.html')
 
 @login_required
 def dashboardRedirect(request):
@@ -43,7 +43,7 @@ def signup(request):
     User.objects.create_user(username=username, email=email, password=password, first_name=fname).save()
     auth_user = authenticate(request, username=username, password=password)
     if auth_user is not None:
-        models.Student(username=username, name=fname, email=email).save()
+        Student(username=username, name=fname, email=email).save()
         login(request, auth_user)
         return dashboardRedirect(request)
     else:
@@ -75,7 +75,7 @@ def Mycourse(request, username):
 
 
 def indexView(request):
-	return render(request, 'index.html')
+	return render(request, 'frontend.html')
 
 
 def followersView(request, username):

@@ -7,7 +7,7 @@ app_name = 'college'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.indexRedirect),
+    url(r'^$', views.base,name="base"),
     url(r'^index/$', views.indexView, name="index"),
     url(r'^signin/$', views.signin, name="signin"),
     url(r'^signup/$', views.signup, name="signup"),
