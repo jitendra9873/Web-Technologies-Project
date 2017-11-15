@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from .models import Student,Follow,Course,Subject,Student_attendance
 
 def base(request):
-	return render(request,'frontend.html')
+    return render(request,'frontend.html')
 
 def indexRedirect(request):
     if request.user.is_authenticated():
@@ -75,7 +75,7 @@ def Mycourse(request, username):
 
 
 def indexView(request):
-	return render(request, 'frontend.html')
+    return render(request, 'frontend.html')
 
 
 def followersView(request, username):
